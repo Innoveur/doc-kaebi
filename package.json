@@ -1,0 +1,28 @@
+{
+  "name": "doc-kaebi",
+  "version": "1.0.0",
+  "description": "Dicord bot to collaboratively modify/manage documents",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "npm build && node -r esm src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raqsrx/doc-kaebi.git"
+  },
+  "keywords": [
+    "discord-bot"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raqsrx/doc-kaebi/issues"
+  },
+  "homepage": "https://github.com/raqsrx/doc-kaebi#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "esm": "^3.2.25"
+  }
+}
