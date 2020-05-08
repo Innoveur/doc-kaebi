@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import { Collection, Client } from "discord.js";
@@ -8,11 +9,7 @@ if (dotenv.config() && typeof process.env.BOT_TOKEN === undefined) {
     throw "BOT_TOKEN config is missing. Check if you have created a .env file with the necessary configs";
 }
 
-if (typeof process.env.PREFIX === undefined) {
-    throw "PREFIX config is missing";
-}
-
-const PREFIX = process.env.PREFIX;
+const PREFIX = "!doc";
 export const client = new Client();
 client.commands = new Collection();
 
