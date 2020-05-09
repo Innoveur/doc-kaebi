@@ -1,3 +1,4 @@
+import * as msgConsts  from "../constants/bot-messages";
 import { getContentWithEscapedQuotes } from "../utils/message-utils";
 import { client } from "../app.js";
 
@@ -8,18 +9,24 @@ export const edit = {
     execute: async (message, content) => {
         const args = content.split(/ +/);
         if (args.length < 2 || !args[0] || !args[1]) {
-            message.reply("Missing command arguments. Please specify the message id and the modified message");
+            message.reply(msgConsts.specifyMessageId);
             return;
         }
 
         const messageId = args.shift();
+        const botMsgs = msgConsts.getAllBotMessages();
         const modifiedContent = args.join(" ");
         let messageToReplace = null;
         try {
             messageToReplace = await message.channel.fetchMessage(messageId);
         } catch (error) {
             console.error(error);
-            message.reply(`Message with message id '${messageId}' does not exist or has been deleted`);
+            message.reply(msgConsts.messageDoesNotExist);
+            return;
+        }
+        const isExist = botMsgs.some(msg => messageToReplace.content.includes(msg));
+        if (isExist){
+            message.reply(msgConsts.cannotEdit);
             return;
         }
 
