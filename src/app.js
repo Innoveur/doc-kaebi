@@ -4,6 +4,9 @@ import "regenerator-runtime/runtime";
 import { Collection, Client } from "discord.js";
 import dotenv from "dotenv";
 import fs from "fs";
+import * as msgConsts  from "./constants/bot-messages";
+
+
 
 if (dotenv.config() && typeof process.env.BOT_TOKEN === undefined) {
     throw "BOT_TOKEN config is missing. Check if you have created a .env file with the necessary configs";
@@ -39,13 +42,13 @@ async function handleOnMessage(msg) {
     args = args.join(" ");
 
     if (!await client.commands.has(command)) {
-        msg.reply("Invalid command");
+        msg.reply(msgConsts.INVALID_COMMAND);
         return;
     }
 
     const commandExecutor = client.commands.get(command);
     if (commandExecutor.content && args.length < 1) {
-        msg.reply("Missing command arguments");
+        msg.reply(msgConsts.MISSING_ARGS);
         return;
     }
 
@@ -54,6 +57,6 @@ async function handleOnMessage(msg) {
         await msg.delete();
     } catch (error) {
         console.error(error);
-        msg.reply("An error occurred while executing the command :(");
+        msg.reply(msgConsts.EXECUTION_ERROR);
     }
 }
