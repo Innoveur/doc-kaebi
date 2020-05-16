@@ -54,7 +54,9 @@ async function handleOnMessage(msg) {
 
     try {
         await commandExecutor.execute(msg, args);
-        await msg.delete();
+        if (!commandExecutor.persistCommand) {
+            await msg.delete();
+        }
     } catch (error) {
         console.error(error);
         msg.reply(msgConsts.EXECUTION_ERROR);
