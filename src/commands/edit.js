@@ -14,7 +14,6 @@ export const edit = {
         }
 
         const messageId = args.shift();
-        const botMsgs = msgConsts.getAllBotMessages();
         const modifiedContent = args.join(" ");
         let messageToReplace = null;
         try {
@@ -24,7 +23,6 @@ export const edit = {
             message.reply(msgConsts.MESSAGE_DOES_NOT_EXIST);
             return;
         }
-        //const isExist = botMsgs.some(msg => messageToReplace.content.includes(msg));
         const isExist = Object.keys(msgConsts).map(k => msgConsts[k]).some(msg => messageToReplace.content.includes(msg));
         if (isExist){
             message.reply(msgConsts.CANNOT_EDIT);
