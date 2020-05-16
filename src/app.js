@@ -45,13 +45,13 @@ async function handleOnMessage(msg) {
     args = args.join(" ");
 
     if (!await client.commands.has(command)) {
-        msg.reply(msgConsts.invalidCommand);
+        msg.reply(msgConsts.INVALID_COMMAND);
         return;
     }
 
     const commandExecutor = client.commands.get(command);
     if (commandExecutor.content && args.length < 1) {
-        msg.reply(msgConsts.missingArgs);
+        msg.reply(msgConsts.MISSING_ARGS);
         return;
     }
 
@@ -60,6 +60,6 @@ async function handleOnMessage(msg) {
         await msg.delete();
     } catch (error) {
         console.error(error);
-        msg.reply(msgConsts.executionError);
+        msg.reply(msgConsts.EXECUTION_ERROR);
     }
 }
