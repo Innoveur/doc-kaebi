@@ -19,7 +19,6 @@ export const edit = {
         try {
             messageToReplace = await message.channel.fetchMessage(messageId);
         } catch (error) {
-            console.error(error);
             message.reply(msgConsts.MESSAGE_DOES_NOT_EXIST);
             return;
         }
