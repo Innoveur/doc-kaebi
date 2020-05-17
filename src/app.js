@@ -1,12 +1,11 @@
 /* eslint-disable no-console */
 import "core-js/stable";
-import "regenerator-runtime/runtime";
-import { Collection, Client } from "discord.js";
+import { Client, Collection } from "discord.js";
 import dotenv from "dotenv";
 import fs from "fs";
-import * as msgConsts  from "./constants/bot-messages";
-
-
+import "regenerator-runtime/runtime";
+import * as msgConsts from "./constants/bot-messages";
+import { db } from "./db/mongoose";
 
 if (dotenv.config() && typeof process.env.BOT_TOKEN === undefined) {
     throw "BOT_TOKEN config is missing. Check if you have created a .env file with the necessary configs";
@@ -34,6 +33,7 @@ client.on("message", async (msg) => {
     await handleOnMessage(msg);
 });
 
+db.init();
 client.login(process.env.BOT_TOKEN);
 
 async function handleOnMessage(msg) {
